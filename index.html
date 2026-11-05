@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fichas SENA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+
+  <!-- ══ BARRA SUPERIOR ══ -->
+  <header>
+    <div class="header-izq">
+      <div class="logo-punto"></div>
+      <div>
+        <h1>Fichas SENA</h1>
+        <p class="subtitulo">Organizador de información</p>
+      </div>
+    </div>
+    <div class="header-der">
+      <span id="total-fichas">0 fichas</span>
+    </div>
+  </header>
+
+  <!-- ══ CONTENIDO PRINCIPAL ══ -->
+  <main>
+
+    <!-- ── Columna izquierda: Formulario ── -->
+    <aside class="panel-form">
+      <h2>Nueva ficha</h2>
+
+      <div class="campo">
+        <label>Título</label>
+        <input id="inp-titulo" type="text" placeholder="Ej: Matemáticas básicas" />
+      </div>
+
+      <div class="campo">
+        <label>Categoría</label>
+        <select id="inp-categoria">
+          <option value="General">General</option>
+          <option value="Matemáticas">Matemáticas</option>
+          <option value="Lenguaje">Lenguaje</option>
+          <option value="Ciencias">Ciencias</option>
+          <option value="Tecnología">Tecnología</option>
+          <option value="Humanidades">Humanidades</option>
+          <option value="Arte">Arte</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label>Información</label>
+        <textarea id="inp-info" placeholder="Escribe el contenido de la ficha..."></textarea>
+      </div>
+
+      <button class="btn-guardar" onclick="agregarFicha()">
+        <span>+</span> Guardar ficha
+      </button>
+
+      <div class="separador"></div>
+
+      <h2>Buscar</h2>
+      <div class="campo">
+        <input id="inp-buscar" type="text" placeholder="Buscar por título..." oninput="buscarFichas()" />
+      </div>
+
+      <div class="separador"></div>
+
+      <h2>Ordenar</h2>
+      <button class="btn-orden" onclick="ordenarAZ()">A → Z</button>
+      <button class="btn-orden" onclick="ordenarZA()">Z → A</button>
+    </aside>
+
+    <!-- ── Columna derecha: Fichas ── -->
+    <section class="panel-fichas">
+
+      <!-- Estado vacío -->
+      <div class="vacio" id="estado-vacio">
+        <div class="vacio-icono">📂</div>
+        <p>Aún no hay fichas guardadas.</p>
+        <p class="vacio-sub">Crea una usando el formulario.</p>
+      </div>
+
+      <!-- Grid de fichas -->
+      <div class="grid-fichas" id="grid-fichas"></div>
+
+    </section>
+  </main>
+
+  <!-- ══ MODAL DE DETALLE ══ -->
+  <div class="overlay" id="overlay" onclick="cerrarModal()"></div>
+  <div class="modal" id="modal">
+    <button class="modal-cerrar" onclick="cerrarModal()">✕</button>
+    <span class="modal-categoria" id="modal-cat"></span>
+    <h2 class="modal-titulo" id="modal-titulo"></h2>
+    <div class="modal-sep"></div>
+    <p class="modal-info" id="modal-info"></p>
+  </div>
+
+  <script src="logica.js"></script>
+</body>
+</html>
+
